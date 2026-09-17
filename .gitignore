@@ -1,0 +1,28 @@
+# --- secrets ---
+.env
+
+# --- data (large, gitignored per README) ---
+data/raw/*.csv
+data/processed/*.csv
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# --- eval artifacts that are regenerated, not hand-authored ---
+eval/predictions_*.csv
+eval/judge_scores.csv
+eval/eval_summary.md
+eval/golden_candidates_draft.csv
+eval/human_calibration_TEMPLATE.csv
+
+# --- python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- os / editor ---
+.DS_Store
+.vscode/
