@@ -101,6 +101,17 @@ NOOP_INTENTS = {"not_support_request"}
 # intent eligibility (gate #2 of the 3-gate routing policy).
 MIN_CONFIDENCE_FOR_AUTO_HANDLE = 0.75
 
+# Minimum TF-IDF cosine similarity (src/retrieval.py) for a retrieved
+# historical example to count as "well-grounded" rather than a coincidental
+# lexical match. Calibrated by manual inspection: 0.42-0.70 similarity
+# reliably found topically relevant examples (cancellations, seat issues);
+# below this, matches were often spurious (shared generic words like "bag"
+# or "showed up" with no real topical connection). This is an imperfect,
+# documented heuristic, not a guarantee -- TF-IDF has no semantic
+# understanding, so a low-similarity retrieval is a signal to route
+# conservatively, not proof the message is unusual.
+MIN_SIMILARITY_FOR_GROUNDED_REPLY = 0.35
+
 # Keyword triggers for the cross-cutting hard override (gate #1, checked
 # BEFORE intent/confidence gates). Deliberately broad/recall-oriented: a
 # false positive here just costs an unnecessary escalation; a false
